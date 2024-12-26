@@ -27,26 +27,23 @@ def load_data(data_dir):
 
 files, labels = load_data(data_dir)
 
-# Veri setini eğitim ve test setlerine ayırma
 X_train, X_test, y_train, y_test = train_test_split(files, labels, test_size=0.2, random_state=42)
 
-# Ses dosyalarını özellik matrisine dönüştürme
 X_train = [extract_features(file) for file in X_train]
 X_test = [extract_features(file) for file in X_test]
 
 X_train = [x for x in X_train if x is not None]
 X_test = [x for x in X_test if x is not None]
 
-# Modeli oluşturma ve eğitme
+
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-# Modelin doğruluğunu değerlendirme
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Test Accuracy: {:.2f}%".format(accuracy * 100))
 
-# Modeli kaydetme
+
 model_filename = "lian4.joblib"
 joblib.dump(model, model_filename)
 print(f"Model saved as {model_filename}")
