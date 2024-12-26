@@ -90,5 +90,3 @@ button_1.configure(image=gradient_image, compound="center", text="Run")
 button_1.pack(pady=0, padx=10)
 
 app.mainloop()
-
-#onurkaya
